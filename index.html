@@ -10,14 +10,21 @@
 
 <body>
     <form>
+        <h3>Cadastra cliente</h3>
         <label for="nome">
-            <p>Nome: <input type="text"></p>
+            <p>Nome: <input type="text"  name="nome" id="nome"></p>
         </label>
         <label for="email">
-            <p>Email: <input type="email"></p>
+            <p>Email: <input type="email"  name="email" id="email"></p>
         </label>
         <input type="submit" value="Cadastrar">
     </form>
+
+    <div id="lista-clientes">
+        <h3>Lista de clientes</h3>
+        <button>Atualizar</button>
+        <ul></ul>
+    </div>
 </body>
 
 </html>
