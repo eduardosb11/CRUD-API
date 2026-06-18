@@ -19,7 +19,7 @@ async function cadastrarCliente(nome, email) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({nome, email}),
+            body: JSON.stringify({ nome, email }),
         });
         if (!resposta.ok) {
             throw new Error(`Status ${resposta.status}`);
@@ -30,6 +30,8 @@ async function cadastrarCliente(nome, email) {
 }
 
 async function listarClientes() {
+    document.querySelector("#lista-clientes > ul").innerHTML = ""; // limpar lista
+
     try {
         const resposta = await fetch(URL);
         if (!resposta.ok) {
@@ -46,8 +48,27 @@ function listar(cliente) {
     const li = document.createElement("li");
     li.innerText = `${cliente.nome} - ${cliente.email}`;
 
+    const excluirBotao = document.createElement("button");
+    excluirBotao.innerText = "Excluir";
+    excluirBotao.addEventListener("click", () => excluirCliente(cliente._id));
+    li.appendChild(excluirBotao);
+
     const ul = document.querySelector("#lista-clientes > ul");
     ul.appendChild(li);
 }
 
-function excluirCliente() { }
+async function excluirCliente(id) {
+    // para deletar é feito uma requisição com método DELETE
+    // para especificar qual cliente é excluído incluímos o id no fim da URL
+    try {
+        const resposta = await fetch(URL + "/" + id, {
+            method: "DELETE",
+        });
+        if (!resposta.ok) {
+            throw new Error(`Status ${resposta.status}`);
+        }
+        listarClientes(); // atualizar a lista de clientes após a exclusão
+    } catch (error) {
+        console.error(error);
+    }
+}
