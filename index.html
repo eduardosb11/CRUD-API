@@ -5,24 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD de clientes</title>
-    <script src="scripts.js" defer></script>
+    <script type="module" src="js/app.js" defer></script>
 </head>
 
 <body>
     <form>
         <h3>Cadastra cliente</h3>
         <label for="nome">
-            <p>Nome: <input type="text"  name="nome" id="nome"></p>
+            <p>Nome: <input type="text"  name="nome" id="nome" required></p>
         </label>
         <label for="email">
-            <p>Email: <input type="email"  name="email" id="email"></p>
+            <p>Email: <input type="email"  name="email" id="email" required></p>
         </label>
         <input type="submit" value="Cadastrar">
     </form>
 
     <div id="lista-clientes">
         <h3>Lista de clientes</h3>
-        <button>Atualizar</button>
         <ul></ul>
     </div>
 </body>
